@@ -1,5 +1,6 @@
 'use strict';
 
 angular.module('dataModelApp', [
-        'ui.router'
-  ]);
+    'ngResource',
+    'ui.router'
+]);

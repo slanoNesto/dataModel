@@ -24,4 +24,21 @@ angular.module('dataModelApp')
                 data: {displayName: 'Home'}
             })
 
+            .state('app.users', {
+                url: '/users',
+                templateUrl: 'components/users/users.html',
+                controller: 'UsersController',
+                controllerAs: 'usersVm',
+                resolve: {
+                    users: ['UsersFactory', '$q', function (UsersFactory, $q) {
+                        var defer = $q.defer();
+                        UsersFactory.getUsers().then(function (response) {
+                            defer.resolve(response.users);
+                        });
+                        return defer.promise;
+                    }]
+                },
+                data: {displayName: 'Users'}
+            });
+
     }]);
